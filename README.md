@@ -36,5 +36,9 @@ spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/{NOME_DO_BANCO_Q
 spring.datasource.username={NOME_DE_USUARIO}
 spring.datasource.password={SENHA_DO_USUARIO}
 ```
+## Estrutura do Projeto
+[Diretórios](https://github.com/christianmurata/estacionamentx/docs/ESTRUTURA.md)
+
+
 ## Ambiente
 [Clique aqui para acessar](http://localhost:8000/)
