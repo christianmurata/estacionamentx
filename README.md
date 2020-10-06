@@ -24,7 +24,7 @@ Documentação para instalação do projeto
 3. Crie um usuário "estacionamentx" com senha "estacionamentx";
 4. Adicione os privilegios do banco "estacionamentx" ao usuário "estacionamentx".
 
-#### Opção 2 - Configurar da sua maneira
+#### Opção 2 - Configuração personalizada
 
 1. Abra o arquivo de [configuração](https://github.com/christianmurata/estacionamentx/blob/main/src/main/resources/application.properties);
 2. Crie um banco de dados mysql, bem como usuário e senha se achar necessário;
@@ -36,3 +36,5 @@ spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/{NOME_DO_BANCO_Q
 spring.datasource.username={NOME_DE_USUARIO}
 spring.datasource.password={SENHA_DO_USUARIO}
 ```
+## Ambiente
+[Clique aqui para acessar](http://localhost:8000/)
