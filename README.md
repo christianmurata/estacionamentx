@@ -37,7 +37,7 @@ spring.datasource.username={NOME_DE_USUARIO}
 spring.datasource.password={SENHA_DO_USUARIO}
 ```
 ## Estrutura do Projeto
-[Diretórios](https://github.com/christianmurata/estacionamentx/docs/ESTRUTURA.md)
+[Diretórios](https://github.com/christianmurata/estacionamentx/blob/main/docs/ESTRUTURA.md)
 
 
 ## Ambiente
