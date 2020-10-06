@@ -2,38 +2,38 @@
 
 Documentação da estrutrura de diretórios do Projeto
 
-## src/java/main/app
+## src/main/java/app
 
 Diretório principal do projeto, é aonde está o arquivo de configuração do servidor e os recursos do projeto
 
-## src/java/main/app/models
+## src/main/java/app/models
 
 Diretório para as classes Model (entidade) do projeto
 
-## src/java/main/app/controllers
+## src/main/java/app/controllers
 
 Diretório para as classes Controller do projeto
 
-## src/java/main/app/views
+## src/main/java/app/views
 
 Diretório para as Views do Projeto
 
-## src/java/main/app/repositories
+## src/main/java/app/repositories
 
 Diretório para as classes repositories, nível de abstração para trabalhar com os dados do banco
 
-## src/java/main/app/exceptions
+## src/main/java/app/exceptions
 
 Diretório para as classes de exceções personalizadas do projeto
 
-## src/java/main/resources
+## src/main/java/resources
 
 Diretório com arquivo de configurações do projeto, aruivos estáticos e templates
 
-## src/java/main/resources/static
+## src/main/java/resources/static
 
 Diretório para arquivos estáticos, minificados do projeto
 
-## src/java/main/resources/template
+## src/main/java/resources/template
 
 Diretório para os templates
