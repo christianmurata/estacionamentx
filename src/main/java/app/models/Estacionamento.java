@@ -1,10 +1,15 @@
 package app.models;
 
+import app.utils.Slug;
+
+import javax.persistence.Id;
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 public class Estacionamento {
@@ -15,8 +20,20 @@ public class Estacionamento {
 	@NotNull(message = "Nome não pode ser NULL")
 	private String nome;
 	
-	public Estacionamento(String nome) {
+	@NotNull
+	@Column(unique = true)
+	private String slug;
+	
+	@NotNull(message = "Valor não pode ser NULL")
+	@NumberFormat(pattern = "#,###.###")
+	private Float valor;
+	
+	public Estacionamento() {}
+	
+	public Estacionamento(String nome, Float valor) {
 		this.setNome(nome);
+		this.setValor(valor);
+		this.setSlug(this.Slugfy());
 	}
 	
 	public int getId() {
@@ -35,9 +52,29 @@ public class Estacionamento {
 		this.nome = nome;
 	}
 
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
+
+	public Float getValor() {
+		return valor;
+	}
+
+	public void setValor(Float valor) {
+		this.valor = valor;
+	}
+
+	public String Slugfy() {
+		return new Slug(nome).make();
+	}
+
 	@Override
 	public String toString() {
 		return "Estacionamento [id=" + id + ", nome=" + nome + "]";
-	}	
+	}
 	
 }
