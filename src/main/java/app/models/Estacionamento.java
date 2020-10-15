@@ -2,8 +2,11 @@ package app.models;
 
 import app.utils.Slug;
 
+import java.util.Set;
+
 import javax.persistence.Id;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,16 +20,19 @@ public class Estacionamento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	
-	@NotNull(message = "Nome não pode ser NULL")
+	@NotNull(message = "O nome do Estacionamento é origatório")
 	private String nome;
 	
 	@NotNull
 	@Column(unique = true)
 	private String slug;
 	
-	@NotNull(message = "Valor não pode ser NULL")
+	@NotNull(message = "O valor cobrado por hora é obrigatório")
 	@NumberFormat(pattern = "#,###.###")
 	private Float valor;
+	
+	@OneToMany(mappedBy="estacionamento")
+	private Set<Vaga> vaga;
 	
 	public Estacionamento() {}
 	

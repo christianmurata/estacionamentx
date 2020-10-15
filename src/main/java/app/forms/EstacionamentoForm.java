@@ -5,10 +5,10 @@ import javax.validation.constraints.NotEmpty;
 
 public class EstacionamentoForm {
 	@NotNull
-	@NotEmpty (message = "Nome não pode ser NULL")
+	@NotEmpty(message = "O nome do Estacionamento é origatório")
 	private String nome;
 	
-	@NotNull(message = "Valor não pode ser NULL")
+	@NotNull(message = "O valor cobrado por hora é obrigatório")
 	private Float valor;
 
 	public String getNome() {
