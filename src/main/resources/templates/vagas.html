@@ -17,12 +17,13 @@
 
 
 	<!-- Vendor CSS Files -->
-  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <link th:href="@{/assets/vendor/icofont/icofont.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap-select.min.css}" rel="stylesheet">
 
 	<!-- Template Main CSS File -->
-  <link th:href="@{/assets/css/style.css}" rel="stylesheet">
   <link th:href="@{/assets/css/material-dashboard.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet">
 
 </head>
 
@@ -53,7 +54,7 @@
     </div>
 
     <div class="main-panel">
-      <div class="content estacionamento">
+      <div class="content">
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -87,29 +88,73 @@
         <!-- End Navbar -->
         
         <div class="container-fluid">
+
           <div class="row">
-            <div class="box-vaga add col-lg-2 col-md-3 col-sm-4 col-6">
-      
-              <i class="icofont-plus"></i>
-      
-              <p>Adicionar</p>
-              
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <h4 class="card-title">Adicionar Vaga</h4>
+                  <p class="card-category">Adicione uma nova vaga para o seu Estacionamento</p>
+                </div>
+                <div class="card-body">
+                  <div class="container-fluid">
+                    <div class="row justify-content-center">
+                      <div class="col-md-12">
+                        <form th:action="@{'/estacionamento/' + ${estacionamento.slug} + '/vagas' }" th:object="${vagaForm}" method="post">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group bmd-form-group">
+                                <label class="bmd-label-floating">Número</label>
+                                <input type="text" pattern="\d+" th:field="*{numero}" th:classappend="${#fields.hasErrors('numero')} ? 'is-invalid'" class="form-control">
+				                        <small class="error text-danger" th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></small>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group bmd-form-group">
+                                <!-- <label class="">Categoria</label> -->
+                                <select class="selectpicker w-100" th:field="*{categoria}" th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid'" name="categoria">
+                                  <option value="normal">Normal</option>
+                                  <option value="individual">Individual</option>
+                                </select>
+				                        <small class="error text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></small>
+                              </div>
+                            </div>
+
+                            <div class="col-md-2">
+                              <div class="form-group bmd-form-group text-right">
+                                <button type="submit" class="btn btn-primary pull-right">Adicionar</button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="clearfix"></div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-      
-            <div class="box-vaga disponivel col-lg-2 col-md-3 col-sm-4 col-6">
-                              
-              <i class="icofont-car-alt-4"></i>
-      
-              <p>Disponivel</p>
-              
-            </div>
-      
-            <div class="box-vaga ocupada col-lg-2 col-md-3 col-sm-4 col-6">
-                              
-              <i class="icofont-car-alt-4"></i>
-      
-              <p>Ocupada</p>
-              
+          </div>
+
+          <div class="row estacionamento">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <h4 class="card-title">Vagas Cadastradas</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row d-flex mx-auto">
+                    <th:block th:each="vaga: ${vagas}">
+                      <div class="box-vaga d-flex align-items-center flex-column" th:classappend="${vaga.disponivel} ? 'disponivel' : 'ocupada'">
+                        <i class="material-icons">directions_car</i>
+                        <span th:text="${vaga.numero}" class="text-center font-weight-bold">Numero</span>
+                        <span th:text="${vaga.disponivel} ? 'Disponível' : 'Ocupada'" class="text-center">Disponibilidade</span>
+                      </div>
+                    </th:block>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -119,7 +164,15 @@
 
   <!-- Vendor JS Files -->
   <script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/assets/vendor/material.dashboard/core/popper.min.js}"></script>
+  <script th:src="@{/assets/vendor/material.dashboard/core/bootstrap-material-design.min.js}"></script>
+
+  <!-- bootstrap -->
   <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/assets/vendor/bootstrap/js/bootstrap-selectpicker.js}"></script>
+
+  <!-- material-dashboard -->
+  <script th:src="@{/assets/vendor/material.dashboard/material-dashboard.js}"></script>
 
 </body>
 
