@@ -69,7 +69,7 @@
                       </tr>
                       <tr>
                         <td class="text-bold">Emitido</td>
-                        <td th:text="${ticket.emitido}"></td>
+                        <td th:text="${#dates.format(ticket.emitido, 'dd/mm/yyyy - HH:mm')}"></td>
                       </tr>
                     </tbody>
                   </table>
