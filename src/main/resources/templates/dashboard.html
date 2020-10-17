@@ -51,7 +51,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;" th:text="${estacionamento.nome}">estacionamento</a>
+            <a class="navbar-brand" href="javascript:;" th:text="${estacionamento.nome} + '#' + ${estacionamento.slug}">estacionamento</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">money_off</i> Alterar
+                    <i class="material-icons">update</i> Just Updated
                     <!-- <a th:href="@{'/estacionamento/' + ${estacionamento.slug} }">Alterar Valor</a> -->
                   </div>
                 </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">add_box</i> Adicionar
+                    <i class="material-icons">update</i> Just Updated
                     <!-- <a th:href="@{'/estacionamento/' + ${estacionamento.slug} + '/vagas' }">Adicionar nova Vaga</a> -->
                   </div>
                 </div>
@@ -156,7 +156,7 @@
           
           <div class="row">
 
-            <div class="col-lg-6 col-md-12">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-tabs card-header-primary">
                   <div class="nav-tabs-navigation">
@@ -185,11 +185,16 @@
                       <table class="table">
                         <tbody>
                           <tr>
-                            <td>http://estacionamentx/entrada/nome_do_estacionamento</td>
+                            <td th:text="'http://localhost:8000/entrada/' + ${estacionamento.slug}"></td>
                             <td class="td-actions text-right">
                               <button type="button" rel="tooltip" title="Copiar Link" class="btn btn-primary btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
+                              <a th:href="@{'/entrada/' + ${estacionamento.slug}}" target="_blank">
+                                <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                                  <i class="material-icons">open_in_new</i>
+                                <div class="ripple-container"></div></button>
+                              </a>
                             </td>
                           </tr>
                         </tbody>
@@ -199,57 +204,22 @@
                       <table class="table">
                         <tbody>
                           <tr>
-                            <td>http://estacionamentx/saida/nome_do_estacionamento</td>
+                            <td th:text="'http://localhost:8000/saida/' + ${estacionamento.slug}"></td>
                             <td class="td-actions text-right">
                               <button type="button" rel="tooltip" title="Copiar Link" class="btn btn-primary btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
+                              <a th:href="@{'/saida/' + ${estacionamento.slug}}" target="_blank">
+                                <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                                  <i class="material-icons">open_in_new</i>
+                                <div class="ripple-container"></div></button>
+                              </a>
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12">
-              <div class="card">
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Controle</h4>
-                  <p class="card-category">Últimas Vagas Ocupadas</p>
-                </div>
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-warning">
-                      <th>Vaga</th>
-                      <th>Veículo</th>
-                      <th>Entrada</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>A21</td>
-                        <td>Fusca Azul</td>
-                        <td>20/10/20 14:00</td>
-                      </tr>
-                      <tr>
-                        <td>A22</td>
-                        <td>Fusca Azul</td>
-                        <td>20/10/20 14:00</td>
-                      </tr>
-                      <tr>
-                        <td>A23</td>
-                        <td>Fusca Azul</td>
-                        <td>20/10/20 14:00</td>
-                      </tr>
-                      <tr>
-                        <td>A24</td>
-                        <td>Fusca Azul</td>
-                        <td>20/10/20 14:00</td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
