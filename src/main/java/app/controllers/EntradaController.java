@@ -117,7 +117,7 @@ public class EntradaController {
 			)
 		);
 		
-		ticketRepository.save(
+		Ticket ticket = ticketRepository.save(
 			new Ticket(
 				entrada, 
 				estacionamento
@@ -129,9 +129,9 @@ public class EntradaController {
 		ocupada.setDisponivel(false);
 		vagaRepository.save(ocupada);
 		
-		veiculo.addAttribute("vagaNumero", ocupada.getNumero());
+//		veiculo.addAttribute("vagaNumero", ocupada.getNumero());
 		
-		return "entrada/sucesso";
+		return "redirect:/ticket/" + slug + "/" + ticket.getNumero();
 	}
 	
 	public Estacionamento carregar(String slug) {
