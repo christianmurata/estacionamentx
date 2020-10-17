@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Estacionamentx</title>
+
+  <!-- Favicons -->
+  <link th:href="@{/assets/img/favicon.png}" rel="icon">
+  <link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/icofont/icofont.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/aos/aos.css}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Techie - v2.1.0
+  * Template URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- header -->
+  <header id="header" class="fixed-top">
+    <div class="container-fluid">
+
+      <div class="row justify-content-center">
+        <div class="col-xl-9 d-flex align-items-between">
+          <h1 class="logo mr-auto">
+            <a href="" th:text="${estacionamento.nome}">Estacionamentx</a>
+          </h1>
+        </div>
+      </div>
+
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- hero -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container-fluid aos-init aos-animate" data-aos="fade-up">
+      <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 acesso order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>SAÍDA</h1>
+          <h2 class="text-xl-justify">Insira o número do seu Ticket:</h2>
+          <form th:action="@{'/saida/' + ${estacionamento.slug} }" th:object="${saidaForm}" method="post">
+            <div class="d-flex justify-content-between">
+              <input type="number" class="form-control input-estacionamento" th:field="*{ticket}" th:classappend="${#fields.hasErrors('ticket')} ? 'is-invalid'">
+              <button type="submit" class="btn btn-get-started">Consultar</button>
+            </div>
+            <small class="error text-danger" th:if="${#fields.hasErrors('ticket')}" th:errors="*{ticket}"></small>
+          </form>
+        </div>
+        <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate" data-aos="zoom-in"
+          data-aos-delay="150">
+          <img src="/assets/img/car.svg" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- End Hero -->
+
+  <!-- Vendor JS Files -->
+  <script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/assets/vendor/jquery.easing/jquery.easing.min.js}"></script>
+  <script th:src="@{/assets/vendor/aos/aos.js}"></script>
+
+
+</body>
+
+</html>

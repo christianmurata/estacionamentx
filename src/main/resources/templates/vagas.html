@@ -113,8 +113,8 @@
                               <div class="form-group bmd-form-group">
                                 <!-- <label class="">Categoria</label> -->
                                 <select class="selectpicker w-100" th:field="*{categoria}" th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid'" name="categoria">
-                                  <option value="normal">Normal</option>
-                                  <option value="individual">Individual</option>
+                                  <option value="carro">Carro</option>
+                                  <option value="moto">Motocicleta</option>
                                 </select>
 				                        <small class="error text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></small>
                               </div>

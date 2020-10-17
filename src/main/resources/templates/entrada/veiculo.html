@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>Estacionamentx - Entrada</title>
+
+	<!-- Favicons -->
+	<link th:href="@{/assets/img/favicon.png}" rel="icon">
+	<link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" />
+
+
+	<!-- Vendor CSS Files -->
+  <link th:href="@{/assets/vendor/icofont/icofont.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/bootstrap/css/bootstrap-select.min.css}" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+  <link th:href="@{/assets/css/material-dashboard.css}" rel="stylesheet" />
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="wrapper entrada">
+
+    <div class="main-panel">
+			
+			<div class="content">    
+				
+				 <!-- Navbar -->
+				 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="javascript:;" th:text="${estacionamento.nome}">estacionamento</a>
+            </div>            
+          </div>
+        </nav>
+        <!-- End Navbar -->
+				
+        <div class="container-fluid">
+					
+					<div class="row estacionamento">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <h4 class="card-title">Insira os Dados do Veículo</h4>
+                </div>
+                <div class="card-body">
+
+									<form th:action="@{'/entrada/' + ${estacionamento.slug} + '/' +  ${categoria} + '/' + ${vaga} }" th:object="${veiculoForm}"  method="POST">
+
+										<div class="row">
+											<div class="col-md-12 mt-3">
+												<div class="form-group bmd-form-group">
+													<label class="bmd-label-floating">Marca</label>
+													<input type="text" th:field="*{marca}" th:classappend="${#fields.hasErrors('marca')} ? 'is-invalid'" class="form-control w-100">
+                          <small class="error text-danger" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></small>
+													
+												</div>
+											</div>
+
+											<div class="col-md-12 mt-3">
+												<div class="form-group bmd-form-group">
+													<label class="bmd-label-floating">Modelo</label>
+													<input type="text" th:field="*{modelo}" th:classappend="${#fields.hasErrors('modelo')} ? 'is-invalid'" class="form-control w-100">
+                          <small class="error text-danger" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></small>
+												</div>
+											</div>
+
+											<div class="col-md-12 mt-3 d-flex justify-content-end">
+												<button type="submit" class="btn btn-primary">Emitir Ticket</button>
+											</div>
+										</div>
+									</form>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+						<div class="col-md-12 d-flex">
+              <a th:href="@{'/entrada/' + ${estacionamento.slug} + '/' + ${categoria}}">
+                <button class="btn btn-primary">Voltar</button>
+              </a>
+						</div>
+					</div>
+        </div>
+			</div>
+			
+    </div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/assets/vendor/material.dashboard/core/popper.min.js}"></script>
+  <script th:src="@{/assets/vendor/material.dashboard/core/bootstrap-material-design.min.js}"></script>
+
+  <!-- bootstrap -->
+  <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/assets/vendor/bootstrap/js/bootstrap-selectpicker.js}"></script>
+
+  <!-- material-dashboard -->
+	<script th:src="@{/assets/vendor/material.dashboard/material-dashboard.js}"></script>
+
+</body>
+
+</html>
