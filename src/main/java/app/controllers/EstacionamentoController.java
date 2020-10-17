@@ -8,7 +8,7 @@ import app.forms.VagaForm;
 import app.repositories.VagaRepository;
 import app.repositories.EstacionamentoRepository;
 
-import app.exceptions.EstacionamentoNotFoundException;
+import app.exceptions.NotFoundException;
 
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -95,7 +95,7 @@ public class EstacionamentoController {
 		Optional <Estacionamento> estacionamento = estacionamentoRepository.findBySlug(slug);
 	    
 	    if(estacionamento.isEmpty())
-	    	throw new EstacionamentoNotFoundException("Estacionamento não encontrado");
+	    	throw new NotFoundException("Estacionamento não encontrado");
 	
 	    return estacionamento.get();
 	}

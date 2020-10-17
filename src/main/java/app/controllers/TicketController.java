@@ -6,8 +6,7 @@ import app.models.Estacionamento;
 import app.repositories.TicketRepository;
 import app.repositories.EstacionamentoRepository;
 
-import app.exceptions.BadRequestException;
-import app.exceptions.EstacionamentoNotFoundException;
+import app.exceptions.NotFoundException;
 
 import java.util.Optional;
 
@@ -37,7 +36,7 @@ public class TicketController {
 		Optional<Ticket> checkTicket = ticketRepository.findByNumeroAndEstacionamentoIdAndStatusTrue(numero, estacionamento.getId());
 		
 		if(checkTicket.isEmpty())
-			throw new BadRequestException("Ticket não Encontrado");
+	    	throw new NotFoundException("Ticket não encontrada");
 		
 		Ticket dadosTicket = checkTicket.get();
 		
@@ -53,7 +52,7 @@ public class TicketController {
 		Optional <Estacionamento> estacionamento = estacionamentoRepository.findBySlug(slug);
 	    
 	    if(estacionamento.isEmpty())
-	    	throw new EstacionamentoNotFoundException("Estacionamento não encontrado");
+	    	throw new NotFoundException("Estacionamento não encontrada");
 	
 	    return estacionamento.get();
 	}

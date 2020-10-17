@@ -7,7 +7,7 @@ import app.models.Estacionamento;
 
 import app.exceptions.BadRequestException;
 import app.exceptions.EstacionamentoNotFoundException;
-
+import app.exceptions.NotFoundException;
 import app.forms.SaidaForm;
 
 import app.repositories.EstacionamentoRepository;
@@ -119,7 +119,7 @@ public class SaidaController {
 		Optional<Ticket> checkTicket = ticketRepository.findByNumeroAndEstacionamentoIdAndStatusTrue(numero, estacionamento.getId());
 		
 		if(checkTicket.isEmpty())
-			throw new BadRequestException("Ticket não Encontrado");
+	    	throw new NotFoundException("Ticket não encontrada");
 		
 		// paga e desativa o ticket
 		Ticket dadosTicket = checkTicket.get();

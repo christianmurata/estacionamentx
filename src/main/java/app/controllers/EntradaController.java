@@ -5,7 +5,7 @@ import app.repositories.*;
 
 import app.forms.VeiculoForm;
 
-import app.exceptions.EstacionamentoNotFoundException;
+import app.exceptions.NotFoundException;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,7 +50,7 @@ public class EntradaController {
 	@GetMapping("/{slug}/{categoria}")
 	public String vagas(@PathVariable String slug, @PathVariable String categoria, Model vagas)  {
 		if(!categoria.equals("carro") && !categoria.equals("moto"))
-			return categoria;
+	    	throw new NotFoundException("Categoria não encontrada");
 		
 		Estacionamento estacionamento  = this.carregar(slug);
 		List <Vaga> listVagas = vagaRepository.findAllByEstacionamentoIdAndCategoriaOrderByNumero(estacionamento.getId(), categoria);
@@ -64,8 +64,9 @@ public class EntradaController {
 	@GetMapping("/{slug}/{categoria}/{vaga}")
 	public String veiculo(@PathVariable String slug, @PathVariable String categoria, 
 			@PathVariable String vaga, Model veiculo, VeiculoForm veiculoForm)  {
+		
 		if(!categoria.equals("carro") && !categoria.equals("moto"))
-			return categoria;
+	    	throw new NotFoundException("Categoria não encontrada");
 		
 		Estacionamento estacionamento  = this.carregar(slug);
 		
@@ -79,8 +80,9 @@ public class EntradaController {
 	@PostMapping("/{slug}/{categoria}/{vaga}")
 	public String emitirTicket(@PathVariable String slug, @PathVariable String categoria, 
 			@PathVariable String vaga, Model veiculo, @Valid VeiculoForm veiculoForm, BindingResult bindingResult) {
+		
 		if(!categoria.equals("carro") && !categoria.equals("moto"))
-			return categoria;
+	    	throw new NotFoundException("Categoria não encontrada");
 		
 		Estacionamento estacionamento  = this.carregar(slug);
 		
@@ -95,11 +97,11 @@ public class EntradaController {
 		Optional<Vaga> vagaSelecionada = vagaRepository.findById(Integer.parseInt(vaga));
 		
 		if(vagaSelecionada.isEmpty()) {
-			return "redirect: /vaganotfound"; // throw exception
+	    	throw new NotFoundException("Vaga não encontrada");
 		}
 		
 		if(!vagaSelecionada.get().isDisponivel()) {
-			return "redirect: /vagaocupda"; // throw exception
+	    	throw new NotFoundException("A vaga selecionada não está disponível");
 		}
 		
 		String marca = veiculoForm.getMarca();
@@ -138,7 +140,7 @@ public class EntradaController {
 		Optional <Estacionamento> estacionamento = estacionamentoRepository.findBySlug(slug);
 	    
 	    if(estacionamento.isEmpty())
-	    	throw new EstacionamentoNotFoundException("Estacionamento não encontrado");
+	    	throw new NotFoundException("Estacionamento não encontrado");
 	
 	    return estacionamento.get();
 	}

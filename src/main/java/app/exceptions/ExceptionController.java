@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -34,6 +35,14 @@ public class ExceptionController {
 	  	notFound.addObject("message", ex.getMessage());
 	    
 	    return notFound;
+  }
+  
+  @ExceptionHandler(NotFoundException.class)
+  public String _404(NotFoundException ex, HttpServletRequest request, Model erro) {
+	  erro.addAttribute("status", "404");
+	  erro.addAttribute("mensagem", ex.getMessage());
+	  
+	  return "errors/custom";
   }
   
 }
