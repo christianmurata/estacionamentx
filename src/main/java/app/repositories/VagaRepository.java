@@ -17,6 +17,8 @@ public interface VagaRepository extends JpaRepository<Vaga, Integer> {
 	
 	List<Vaga> findAllByEstacionamentoIdOrderByNumero(int id);
 	
+	List<Vaga> findAllByEstacionamentoIdAndCategoriaOrderByNumero(int id, String categoria);
+	
 	Optional<Vaga> findOneByEstacionamentoIdAndNumero(int id, int numero);
 	
 }

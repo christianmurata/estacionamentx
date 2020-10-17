@@ -71,7 +71,6 @@ public class EstacionamentoController {
 		int numero = vagaForm.getNumero();
 		String categoria = vagaForm.getCategoria();
 		
-		// verifica se existe vaga de mesmo numero
 		Optional<Vaga> vaga = vagaRepository.findOneByEstacionamentoIdAndNumero(estacionamento.getId(), numero);
 		
 		if(!vaga.isEmpty()) {
